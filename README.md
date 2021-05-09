@@ -1,11 +1,11 @@
 Repertoire-Organizer
-This Sinatra App allows the user to view organize the works they have studied for review, concert program planning, and promotion.
+This Sinatra app allows a musician to organize the works they have studied for review, promotion, and concert program planning.
 
 Installation
-To use this app, just clone, run rake db:migrate and then run shotgun.
+Fork and clone the repository. Run bundle install, then shotgun to use this app.
 
 Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/ben-altman/groupmuse_concerts. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ben-altman/repertoire-organizer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 License
 The gem is available as open source under the terms of the MIT License.
