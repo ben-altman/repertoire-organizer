@@ -8,5 +8,7 @@ end
 # end
 
 use Rack::MethodOverride
-# remember to "use" other controllers here
+use UsersController
+use CompositionsController
+use ListTypesController
 run ApplicationController
