@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_004212) do
+ActiveRecord::Schema.define(version: 2021_05_12_152522) do
 
   create_table "compositions", force: :cascade do |t|
     t.string "title"
     t.string "composer"
     t.string "instrumentation"
     t.integer "list_type_id"
+    t.integer "era_id"
   end
 
   create_table "eras", force: :cascade do |t|

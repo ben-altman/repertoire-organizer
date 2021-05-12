@@ -1,5 +1,5 @@
-<% if flash %>
-  <p style="color: red;"><%= flash %></p>
+<% if flash.has? %>
+  <p style="color: red;"><%= flash[:message] %></p>
 <% end %>
 
 <form action='/signup' method="POST">
