@@ -22,7 +22,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect "users/#{user.slug}"
         else 
-            flash[:error] = "Please enter a valid username and password"
+            flash[:error] = "Please enter a valid username and password or sign up"
             redirect "users/login"
         end
     end

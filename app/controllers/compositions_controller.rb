@@ -1,6 +1,6 @@
 class CompositionsController < ApplicationController
 
-    get 'compositions/new' do
+    get '/compositions/new' do
         erb :'/compositions/new'
     end
 end
