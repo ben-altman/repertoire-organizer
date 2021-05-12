@@ -1,3 +1,7 @@
+<% if flash %>
+  <p style="color: red;"><%= flash %></p>
+<% end %>
+
 <form action='/login' method="POST">
   <label for="name">Enter username:</label>
   <input id="name" type="text" name="name" placeholder="username">

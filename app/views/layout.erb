@@ -19,7 +19,14 @@
 
         <%= yield %>
 
-      <footer class="branding">
+        <% if logged_in? %>
+          <strong><a href="/logout">Log Out</a></strong>
+        <% end %>
+        <br/>
+      <footer class="branding">  
+        <% if logged_in? %>
+          <strong><a href="/logout">Log Out</a></strong>
+        <% end %>      
         <small>&copy; 2021 <strong>Repertoire Organizer</strong></small>
       </footer>
     </div>
