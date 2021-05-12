@@ -2,7 +2,7 @@ require 'rack-flash'
 
 class UsersController < ApplicationController
     use Rack::Flash
-    
+
     get "/users/:slug" do
         @user = User.find_by_slug(params[:slug])
         if logged_in?
@@ -37,9 +37,9 @@ class UsersController < ApplicationController
             @user.save
             session[:user_id] = @user.id
             redirect to ("users/#{@user.slug}")
-        else
-            
+        else            
             params[:username] == "" || params[:password] == ""
+            flash[:error] = "Please enter a valid username and password"
             redirect '/signup'
         end
     end
