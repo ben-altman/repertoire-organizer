@@ -11,7 +11,18 @@ class UsersController < ApplicationController
     end
     
     get '/login' do
-        "hello"    
+        erb :'users/login'
+    end
+
+    post '/login' do
+        user = User.find_by(:name => params[:name])
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            redirect "users/#{user.slug}"
+        else 
+            flast[:error] = "Please enter a valid username and password"
+            redirect "users/login"
+        end
     end
 
     get '/signup' do
