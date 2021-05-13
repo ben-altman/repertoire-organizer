@@ -6,12 +6,17 @@ class CompositionsController < ApplicationController
             redirect '/'
         end
         @user = current_user
-        
+
         erb :'compositions/index'    
     end
 
     get '/compositions/new' do
         erb :'/compositions/new'
+    end
+
+    get 'compositions/:slug' do
+        @composition = Composition.find_by_slug(params[:slug])
+        erb :'compositions/show'
     end
 
     post '/compositions/index' do
