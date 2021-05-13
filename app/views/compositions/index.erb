@@ -5,7 +5,7 @@
     <ul>
     <% @user.compositions.each do |c| %>
         <% if c.era == e %>
-        <li><%= c.composer %>: <%= c.title %></li>
+        <li><a href="compositions/show"><%= c.composer %>: <%= c.title %></a></li>
         <% end %>
     </ul>
     <% end %>
