@@ -18,12 +18,12 @@
     <br/><br/>
 
     <label for="instrumentation">Instrumentation:</label>
-    <input id="instrumentation" name="list[composition][instrumenation]" placeholder="Instrumentation">
+    <input id="instrumentation" name="list[composition][instrumentation]" placeholder="Instrumentation">
     <br/><br/>
 
     <p>Select the Era:</p>
     <% Era.all.each do |e|%>
-    <input type="radio" id="<%= e.name %>" name="list[composition][era]" value="<%= e.id %>">
+    <input type="radio" id="<%= e.name %>" name="list[composition][era_id]" value="<%= e.id %>">
     <label for="<%= e.name %>"><%= e.name %></label><br>
     <% end %>
     <br/><br/>
