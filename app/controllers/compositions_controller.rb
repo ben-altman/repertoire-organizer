@@ -1,7 +1,6 @@
 class CompositionsController < ApplicationController
 
     get '/compositions' do
-#  binding.pry
         if !logged_in?
             redirect '/'
         end
@@ -11,12 +10,21 @@ class CompositionsController < ApplicationController
     end
 
     get '/compositions/new' do
-        erb :'/compositions/new'
+        if logged_in?
+            erb :'/compositions/new'
+        else
+            redirect '/'
+        end
     end
 
-    get 'compositions/:slug' do
-        @composition = Composition.find_by_slug(params[:slug])
-        erb :'compositions/show'
+    get '/compositions/:slug' do
+        if logged_in?
+            @user = User.find(session[:user_id])
+            @composition = Composition.find_by_slug(params[:slug])
+            erb :'compositions/show'
+        else
+            redirect '/'
+        end
     end
 
     post '/compositions/index' do
@@ -28,6 +36,7 @@ class CompositionsController < ApplicationController
             @composition.list_type_id = list.first.id
         else 
             @list = ListType.create(params[:list][:name])
+            @list.save
             current_user.list_types << @list
             @composition.list_type_id = @list.id
         end

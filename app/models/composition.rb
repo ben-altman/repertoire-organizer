@@ -4,6 +4,12 @@ class Composition <ActiveRecord::Base
 
     validates :title, :composer, :instrumentation, presence: true
 
-    extend Slugifiable::ClassMethods
-    include Slugifiable::InstanceMethods
+    def slug
+        self.title.gsub(" ", "-").downcase
+    end 
+
+    def self.find_by_slug(slug)
+        self.all.find{ |instance| instance.slug == slug }
+    end
+
 end

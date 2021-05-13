@@ -1,7 +1,7 @@
-<h2>Your Repertoire is Arranged by Time Period</h2>
+<h1>Your Repertoire is Arranged by Time Period</h1>
 
 <% Era.all.each do |e| %>
-    <h3><%= e.name %></h3>
+    <h2><%= e.name %></h2>
     <ul>
     <% @user.compositions.each do |c| %>
         <% if c.era == e %>
@@ -10,3 +10,4 @@
     </ul>
     <% end %>
 <% end %>
+
