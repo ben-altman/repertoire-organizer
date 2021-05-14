@@ -35,13 +35,13 @@ class CompositionsController < ApplicationController
                 list = current_user.list_types.where(name: params[:list][:name])
                 @composition.list_type_id = list.first.id
             else 
-                @list = ListType.create(params[:list][:name])
+                @list = ListType.create(params[:list].except("composition"))
                 @list.save
                 current_user.list_types << @list
                 @composition.list_type_id = @list.id
             end
             @composition.save
-            redirect "/compositions/index"
+            redirect "/compositions"
         else
             redirect '/'
         end
@@ -58,8 +58,20 @@ class CompositionsController < ApplicationController
 
     patch '/compositions/:slug' do
         if logged_in?
-
-
+            @composition = Composition.find_by_slug(params[:slug])
+            @composition.title = params[:list][:composition][:title]
+            @composition.era_id = params[:list][:composition][:era_id]
+            if current_user.list_types.any? {|l| l.name == params[:list][:name]}
+                list = current_user.list_types.where(name: params[:list][:name])
+                @composition.list_type_id = list.first.id
+            else 
+                @list = ListType.create(params[:list].except("composition"))
+                @list.save
+                current_user.list_types << @list
+                @composition.list_type_id = @list.id
+            end
+            @composition.save
+            redirect "/compositions/#{@composition.slug}"
         else
             redirect '/'
         end
@@ -67,11 +79,11 @@ class CompositionsController < ApplicationController
 
     delete '/compositions/:slug/delete' do
         if logged_in?
-            @composition = Composition.find_by_slug(params[:slug])
-            if @composition && @composition.user == current_user
+            @composition = Composition.find_by_slug(params[:slug])            
+            if @composition && @composition.list_type.user == current_user
                 @composition.delete
             end
-            redirect '/compositions/index'
+            redirect '/compositions'
         else
             redirect '/'
         end
