@@ -1,8 +1,15 @@
-<h2>Click to view or add a composition.</h2>
+<h2>Click to view a repertoire list or add a composition.</h2>
 
-<h3>View Solo Works</h3>
-<h3>View Chamber Music</h3>
-<h3>View Concerti</h3>
+<% @user.list_types.each do |l| %>
+    <% if l.name == "solo" %>
+        <h3><a href="/list_types/<%= l.slug %>">View Solo Works</a></h3>
+    <% elsif l.name == "chamber" %>
+        <h3><a href="/list_types/<%= l.slug %>">View Chamber Music</a></h3>
+    <% else %>
+        <h3><a href="/list_types/<%= l.slug %>">View Concertos</a></h3>
+    <% end %>
+<% end %>
+<br>
 <h3><a href="/compositions">See all compositions</a></h3>
 <h3><a href="/compositions/new">Add a new composition</a></h3>
 <br/>

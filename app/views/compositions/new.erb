@@ -3,6 +3,7 @@
 <form action="/compositions/index" method="POST">
     <label for="list">Choose a category for this piece:</label>
     <select id="list" name="list[name]">
+        <option value="none" selected disabled hidden>Select a list</option>
         <option value="solo">Solo Composition</option>
         <option value="chamber">Chamber Music</option>
         <option value="concerto">Concerto</option>

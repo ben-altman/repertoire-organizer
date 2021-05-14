@@ -1,0 +1,11 @@
+<h2><%= @list.name.upcase %></h2>
+
+<% @compositions.each do |c| %>
+    <a href="/compositions/<%= c.slug %>"><%= c.composer %>: <%= c.title %></a><br>
+<% end %>
+
+<br>
+<strong>
+<a href="/compositions">Go to Complete Compositions List</a><br>
+<a href="/users/<%= @user.slug %>">Home</a>
+</strong>

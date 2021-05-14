@@ -20,7 +20,7 @@ class CompositionsController < ApplicationController
     get '/compositions/:slug' do
         if logged_in?
             @user = User.find(session[:user_id])
-            @composition = Composition.find_by_slug(params[:slug])
+            @composition = @user.compositions.find_by_slug(params[:slug])
             erb :'compositions/show'
         else
             redirect '/'
@@ -49,7 +49,8 @@ class CompositionsController < ApplicationController
 
     get '/compositions/:slug/edit' do
         if logged_in?
-            @composition = Composition.find_by_slug(params[:slug])
+            @user = User.find(session[:user_id])
+            @composition = @user.compositions.find_by_slug(params[:slug])
             erb :'compositions/edit'
         else
             redirect '/'
@@ -58,7 +59,8 @@ class CompositionsController < ApplicationController
 
     patch '/compositions/:slug' do
         if logged_in?
-            @composition = Composition.find_by_slug(params[:slug])
+            @user = User.find(session[:user_id])
+            @composition = @user.compositions.find_by_slug(params[:slug])
             @composition.title = params[:list][:composition][:title]
             @composition.era_id = params[:list][:composition][:era_id]
             if current_user.list_types.any? {|l| l.name == params[:list][:name]}
@@ -79,7 +81,8 @@ class CompositionsController < ApplicationController
 
     delete '/compositions/:slug/delete' do
         if logged_in?
-            @composition = Composition.find_by_slug(params[:slug])            
+            @user = User.find(session[:user_id])
+            @composition = @user.compositions.find_by_slug(params[:slug])            
             if @composition && @composition.list_type.user == current_user
                 @composition.delete
             end
