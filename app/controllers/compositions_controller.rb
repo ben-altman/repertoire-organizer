@@ -62,6 +62,7 @@ class CompositionsController < ApplicationController
             @user = User.find(session[:user_id])
             @composition = @user.compositions.find_by_slug(params[:slug])
             @composition.title = params[:list][:composition][:title]
+            @composition.instrumentation = params[:list][:composition][:instrumentation]
             @composition.era_id = params[:list][:composition][:era_id]
             if current_user.list_types.any? {|l| l.name == params[:list][:name]}
                 list = current_user.list_types.where(name: params[:list][:name])
