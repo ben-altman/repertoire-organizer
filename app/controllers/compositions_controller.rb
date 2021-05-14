@@ -41,7 +41,7 @@ class CompositionsController < ApplicationController
                 @composition.list_type_id = @list.id
             end
             @composition.save
-            redirect "/compositions"
+            redirect "/compositions/index"
         else
             redirect '/'
         end
@@ -67,8 +67,11 @@ class CompositionsController < ApplicationController
 
     delete '/compositions/:slug/delete' do
         if logged_in?
-
-
+            @composition = Composition.find_by_slug(params[:slug])
+            if @composition && @composition.user == current_user
+                @composition.delete
+            end
+            redirect '/compositions/index'
         else
             redirect '/'
         end
