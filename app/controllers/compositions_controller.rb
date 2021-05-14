@@ -45,5 +45,12 @@ class CompositionsController < ApplicationController
 
         redirect "/compositions"
     end
+
+    get '/compositions/:slug/edit' do
+        @composition = Composition.find_by_slug(params[:slug])
+        erb :'compositions/edit'
+    end
+
+
 end
 
