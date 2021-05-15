@@ -58,6 +58,7 @@ class CompositionsController < ApplicationController
     end
 
     patch '/compositions/:slug' do
+# binding.pry
         if logged_in?
             @user = User.find(session[:user_id])
             @composition = @user.compositions.find_by_slug(params[:slug])
